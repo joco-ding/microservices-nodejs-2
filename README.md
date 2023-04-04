@@ -2,6 +2,10 @@
 
 Di bagian ke-dua ini aplikasi menangani middleware otentikasi dan peran
 
+Tautan bagian lain:
+[Bagian I](https://github.com/joco-ding/microservice-nodejs-1)
+
+
 ## Cara Install
 
     git clone https://github.com/joco-ding/microservice-nodejs-2.git && cd microservice-nodejs-2 &&  npm install
