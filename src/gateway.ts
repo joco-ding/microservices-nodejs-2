@@ -1,6 +1,7 @@
-import { Router, Response, response } from 'express';
+import { Router, Response } from 'express';
 import axios, { AxiosError } from 'axios';
-import { authenticate, LayananIface, AuthenticatedRequest } from './middleware/auth';
+import { authenticate } from './middleware/auth';
+import { AuthenticatedRequest, LayananIface } from './store';
 
 const router = Router();
 
@@ -22,4 +23,3 @@ router.use('/', authenticate, async (req: AuthenticatedRequest, res: Response) =
 });
 
 export default router;
-

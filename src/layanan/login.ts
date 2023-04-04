@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import { users } from '../store';
 
 const router = Router();
 
@@ -13,26 +14,6 @@ router.post('/', async (req: Request, res: Response) => {
   if (!username || !password) {
     return res.status(400).json({ pesan: 'Username dan password harus diisi' });
   }
-
-  interface UserIface {
-    username: string;
-    password: string;
-    role: number;
-  }
-
-
-  const users: UserIface[] = [
-    {
-      username: 'user1',
-      password: 'password1',
-      role: 1,
-    },
-    {
-      username: 'user2',
-      password: 'password2',
-      role: 2,
-    },
-  ];
 
   const user = users.find((user) => user.username === username && user.password === password);
 
@@ -48,4 +29,3 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 export default router;
-
