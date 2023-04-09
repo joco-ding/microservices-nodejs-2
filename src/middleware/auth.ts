@@ -1,9 +1,10 @@
-import {  Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { AuthenticatedRequest, layanans, secretKey } from '../store';
+import { semuaLayanan, secretKey } from '../store';
+import { AuthRequest } from '../interface';
 
-export const authenticate = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  const endpoin = layanans.find((layanan) => layanan.method === req.method && layanan.path === req.originalUrl)
+export const authenticate = (req: AuthRequest, res: Response, next: NextFunction) => {
+  const endpoin = semuaLayanan.find((layanan) => layanan.method === req.method && layanan.path === req.originalUrl)
   if (!endpoin) {
     return res.status(404).json({ pesan: "Layanan tidak ditemukan" })
   }
@@ -11,10 +12,7 @@ export const authenticate = (req: AuthenticatedRequest, res: Response, next: Nex
 
   let headers = {}
   if (req.method === 'POST') {
-    headers = {
-      ...headers,
-      'content-type': 'application/json',
-    }
+    headers = { ...headers, 'content-type': 'application/json', }
   }
 
   if (endpoin.role.length === 0) {
@@ -29,7 +27,7 @@ export const authenticate = (req: AuthenticatedRequest, res: Response, next: Nex
   if (!authHeader) {
     return res.status(401).json({ pesan: 'Tidak ada token yang diberikan' });
   }
-
+  // Authorization: Bearer x-y-z
   const [type, token] = authHeader.split(' ');
 
   if (type !== 'Bearer' || !token) {

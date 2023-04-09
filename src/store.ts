@@ -1,47 +1,27 @@
-import { Request } from 'express';
+import { LayananIface, UserIface } from "./interface";
 
 export const secretKey = 'ini-kunci-rahasia';
 
-export interface LayananIface {
-  path: string;
-  method: string;
-  url: string;
-  role: number[];
-}
-
-export interface AuthenticatedRequest extends Request {
-  user?: {
-    username: string;
-  };
-  endpoin?: LayananIface;
-}
-
-export const layanans: LayananIface[] = [
+export const semuaLayanan: LayananIface[] = [
   {
     path: '/api/layanan-satu',
-    url: 'http://localhost:3001/api/layanan-satu',
+    url: 'http://localhost:3001/layanan-satu',
     method: 'GET',
     role: [1],
   },
   {
     path: '/api/layanan-dua',
-    url: 'http://localhost:3002/api/layanan-dua',
+    url: 'http://localhost:3002/layanan-dua',
     method: 'GET',
     role: [1,2],
   },
   {
     path: '/api/login',
-    url: 'http://localhost:3003/api/login',
+    url: 'http://localhost:3003/login',
     method: 'POST',
     role: [],
   }
 ]
-
-export interface UserIface {
-  username: string;
-  password: string;
-  role: number;
-}
 
 export const users: UserIface[] = [
   {

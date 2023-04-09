@@ -10,16 +10,15 @@ export const generateToken = (payload: object, secretKey: string): string => {
 
 router.post('/', async (req: Request, res: Response) => {
   const { username, password } = req.body;
-
   if (!username || !password) {
     return res.status(400).json({ pesan: 'Username dan password harus diisi' });
   }
 
   const user = users.find((user) => user.username === username && user.password === password);
-
   if (!user) {
     return res.status(401).json({ pesan: 'Username atau password salah' });
   }
+
   const payload = { username: user.username, role: user.role }
 
   const secretKey = req.headers.authorization || ''

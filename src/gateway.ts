@@ -1,11 +1,11 @@
 import { Router, Response } from 'express';
 import axios, { AxiosError } from 'axios';
 import { authenticate } from './middleware/auth';
-import { AuthenticatedRequest, LayananIface } from './store';
+import { AuthRequest, LayananIface } from './interface';
 
 const router = Router();
 
-router.use('/', authenticate, async (req: AuthenticatedRequest, res: Response) => {
+router.use('/', authenticate, async (req: AuthRequest, res: Response) => {
   try {
     try {
       const endpoin = req.endpoin as LayananIface
