@@ -24,4 +24,4 @@ Semua file yang dibutuhkan untuk di-unggah ke server ada di folder dist
 
 ## Video Tutorial
 
-belum dibuat
+https://youtu.be/EE3v844BQNM
